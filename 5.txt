@@ -1,0 +1,23 @@
+function primeFactors(n) 
+{
+    const factors = {};
+    let num = n;
+    let divisor = 2;
+    while (num > 1) 
+    {
+        if (num % divisor === 0) 
+        {
+            factors[divisor] = (factors[divisor] || 0) + 1;
+            num /= divisor;
+        } else {
+            divisor++;
+        }
+    }
+    return Object.keys(factors)
+        .map(prime => 
+             {
+            const power = factors[prime];
+            return power === 1 ? `(${prime})` : `(${prime}**${power})`;
+        })
+        .join('');
+}
