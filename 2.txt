@@ -1,0 +1,22 @@
+function ipv4Parser(ip, mask)
+{
+ let ip1=ip.split(".");
+  let mask1=mask.split(".");
+  let net=[];
+  let host=[];
+  for(let i=0;i<4;i++)
+  {
+    let ipn=Number(ip1[i]);
+    let maskn=Number(mask1[i]);
+    let net1=ipn & maskn;
+    let host1=ipn-net1;
+    net.push(net1);
+    host.push(host1);
+  }
+  let net2=net.join(".");
+  let host2=host.join(".");
+  return [net2,host2];
+}
+let [net,host]= ipv4Parser("192.168.2.1", "255.255.255.0");
+console.log("Сетевой блок ", net);
+console.log("Идентификатор хоста ", host);
